@@ -30,7 +30,7 @@ func (l Cost) String() string {
 	return "不正な値です"
 }
 
-func ParceCost(s string) Cost {
+func ParseCost(s string) Cost {
 	return costStrings[s]
 }
 
@@ -46,7 +46,7 @@ func (r CostRange) String() string {
 func ParseCostRange(s string) *CostRange {
 	segs := strings.Split(s, "...")
 	return &CostRange{
-		From: ParceCost(segs[0]),
-		To:   ParceCost(segs[1]),
+		From: ParseCost(segs[0]),
+		To:   ParseCost(segs[1]),
 	}
 }

@@ -27,14 +27,14 @@ func TestCostString(t *testing.T) {
 
 func TestParceCost(t *testing.T) {
 	is := is.New(t)
-	is.Equal(meander.Cost1, meander.ParceCost("$"))
-	is.Equal(meander.Cost2, meander.ParceCost("$$"))
-	is.Equal(meander.Cost3, meander.ParceCost("$$$"))
-	is.Equal(meander.Cost4, meander.ParceCost("$$$$"))
-	is.Equal(meander.Cost5, meander.ParceCost("$$$$$"))
+	is.Equal(meander.Cost1, meander.ParseCost("$"))
+	is.Equal(meander.Cost2, meander.ParseCost("$$"))
+	is.Equal(meander.Cost3, meander.ParseCost("$$$"))
+	is.Equal(meander.Cost4, meander.ParseCost("$$$$"))
+	is.Equal(meander.Cost5, meander.ParseCost("$$$$$"))
 }
 
-func TestParceCostRange(t *testing.T) {
+func TestParseCostRange(t *testing.T) {
 	is := is.New(t)
 	var l *meander.CostRange
 	l = meander.ParseCostRange("$$...$$$")
