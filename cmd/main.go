@@ -35,3 +35,9 @@ func respond(w http.ResponseWriter, r *http.Request, data []interface{}) error {
 	}
 	return json.NewEncoder(w).Encode(publicData)
 }
+
+func cors(f http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		f(w, r)
+	}
+}
