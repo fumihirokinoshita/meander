@@ -37,10 +37,10 @@ func TestParceCost(t *testing.T) {
 func TestParceCostRange(t *testing.T) {
 	is := is.New(t)
 	var l *meander.CostRange
-	l = meander.ParceCostRange("$$...$$$")
+	l = meander.ParseCostRange("$$...$$$")
 	is.Equal(l.From, meander.Cost2)
 	is.Equal(l.To, meander.Cost3)
-	l = meander.ParceCostRange("$...$$$$$")
+	l = meander.ParseCostRange("$...$$$$$")
 	is.Equal(l.From, meander.Cost1)
 	is.Equal(l.To, meander.Cost5)
 }

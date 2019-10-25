@@ -48,7 +48,7 @@ func (q *Query) find(types string) (*googleResponse, error) {
 	vals.Set("types", types)
 	vals.Set("key", APIKey)
 	if len(q.CostRangeStr) > 0 {
-		r := ParceCostRange(q.CostRangeStr)
+		r := ParseCostRange(q.CostRangeStr)
 		vals.Set("minprice", fmt.Sprintf("%d", int(r.From)-1))
 		vals.Set("maxprice", fmt.Sprintf("%d", int(r.To)-1))
 	}

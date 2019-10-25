@@ -43,7 +43,7 @@ func (r CostRange) String() string {
 	return r.From.String() + "..." + r.To.String()
 }
 
-func ParceCostRange(s string) *CostRange {
+func ParseCostRange(s string) *CostRange {
 	segs := strings.Split(s, "...")
 	return &CostRange{
 		From: ParceCost(segs[0]),
