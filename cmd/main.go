@@ -5,13 +5,25 @@ import (
 	"meander"
 	"net/http"
 	"runtime"
+	"strconv"
+	"strings"
 )
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	// meander.APIKey = "TODO"
+	meander.APIKey = ""
 	http.HandleFunc("/journeys", func(w http.ResponseWriter, r *http.Request) {
 		respond(w, r, meander.Journeys)
+	})
+	http.HandleFunc("/recommendations", func(w http.ResponseWriter, r *http.Request) {
+		q := &meander.Query{
+			Jouney: strings.Split(r.URL.Query().Get("journey"), "|"),
+		}
+		q.Lat, _ = strconv.ParseFloat(r.URL.Query().Get("lat"), 64)
+		q.Lng, _ = strconv.Atoi(r.URL.Query().Get("radius"))
+		q.CostRangeStr = r.URL.Query().Get("cost")
+		places := q.Run()
+		respond(w, r, places)
 	})
 	http.ListenAndServe(":8080", http.DefaultServeMux)
 }
