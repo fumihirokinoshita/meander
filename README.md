@@ -22,3 +22,8 @@ $ mkdir $HOME/go/src
 $ cd $HOME/go/src
 $ git clone github.com/fumihirokinoshita/meander
 ```
+
+ライブラリのインストール
+```
+$ go get github.com/cheekybits/is
+```
