@@ -25,7 +25,7 @@ func (p *Place) Public() interface{} {
 	return map[string]interface{}{
 		"name":     p.Name,
 		"icon":     p.Icon,
-		"photo":    p.Photos,
+		"photos":   p.Photos,
 		"vicinity": p.Vicinity,
 		"lat":      p.Lat,
 		"lng":      p.Lng,
@@ -41,7 +41,7 @@ type Query struct {
 }
 
 func (q *Query) find(types string) (*googleResponse, error) {
-	u := "https://maps.googleapis.com/maps/api/place/nearbysearce/json"
+	u := "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
 	vals := make(url.Values)
 	vals.Set("location", fmt.Sprintf("%g,%g", q.Lat, q.Lng))
 	vals.Set("radius", fmt.Sprintf("%d", q.Radius))
@@ -99,7 +99,7 @@ func (q *Query) Run() []interface{} {
 }
 
 type googleResponse struct {
-	Results []*Place `json:"result"`
+	Results []*Place `json:"results"`
 }
 
 type googleGeometry struct {
