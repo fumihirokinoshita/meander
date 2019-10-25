@@ -17,10 +17,11 @@ func main() {
 	}))
 	http.HandleFunc("/recommendations", cors(func(w http.ResponseWriter, r *http.Request) {
 		q := &meander.Query{
-			Jouney: strings.Split(r.URL.Query().Get("journey"), "|"),
+			Journey: strings.Split(r.URL.Query().Get("journey"), "|"),
 		}
 		q.Lat, _ = strconv.ParseFloat(r.URL.Query().Get("lat"), 64)
-		q.Lng, _ = strconv.Atoi(r.URL.Query().Get("radius"))
+		q.Lng, _ = strconv.ParseFloat(r.URL.Query().Get("log"), 64)
+		q.Radius, _ = strconv.Atoi(r.URL.Query().Get("radius"))
 		q.CostRangeStr = r.URL.Query().Get("cost")
 		places := q.Run()
 		respond(w, r, places)
