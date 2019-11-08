@@ -25,7 +25,7 @@ func TestCostString(t *testing.T) {
 	is.Equal(meander.Cost5.String(), "$$$$$")
 }
 
-func TestParceCost(t *testing.T) {
+func TestParseCost(t *testing.T) {
 	is := is.New(t)
 	is.Equal(meander.Cost1, meander.ParseCost("$"))
 	is.Equal(meander.Cost2, meander.ParseCost("$$"))
